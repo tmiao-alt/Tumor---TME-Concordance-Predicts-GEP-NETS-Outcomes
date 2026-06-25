@@ -1,3 +1,15 @@
+required_packages <- c("data.table")
+missing_packages <- required_packages[!vapply(required_packages, requireNamespace, logical(1), quietly = TRUE)]
+if (length(missing_packages) > 0) {
+  stop(
+    "Please install required package(s): ",
+    paste(missing_packages, collapse = ", "),
+    call. = FALSE
+  )
+}
+
+library(data.table)
+
 # -- helpers -----------------------------------------------------------------
 .select_cols <- function(dt, cols) {
   if (length(cols) == 2L && all(cols %in% names(dt)) && match(cols[1], names(dt)) <= match(cols[2], names(dt))) {

@@ -1,3 +1,25 @@
+required_packages <- c(
+  "data.table",
+  "survival",
+  "survminer",
+  "miceadds",
+  "ggplot2"
+)
+missing_packages <- required_packages[!vapply(required_packages, requireNamespace, logical(1), quietly = TRUE)]
+if (length(missing_packages) > 0) {
+  stop(
+    "Please install required package(s): ",
+    paste(missing_packages, collapse = ", "),
+    call. = FALSE
+  )
+}
+
+library(data.table)
+library(survival)
+library(survminer)
+library(miceadds)
+library(ggplot2)
+
 biomarkergroups <- list(
   list(c(quote(origin == "Pancreas")), "Pan_origin",  "datan",  "case"),
   list(c(quote(origin == "Ileum")),    "SB_origin",  "datan",  "case"),
